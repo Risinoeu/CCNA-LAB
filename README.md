@@ -56,7 +56,3 @@ To verify the functionality of this lab:
 1.  **Ping Test:** Run a ping from `PC0` (HQ) to `Smartphone0` (Branch) to verify GRE Tunnel routing.
 2.  **ACL Test:** Open the Web Browser on `PC0` and try to access `8.8.8.8`. It should be denied by the Extended ACL.
 3.  **Redundancy Test:** Shutdown one link in the EtherChannel bundle; traffic should continue to flow without interruption.
-
-
-*For a list of planned features and known issues, please refer to the [[TODO.md]] file.*
----
