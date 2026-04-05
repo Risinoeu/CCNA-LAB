@@ -1,0 +1,115 @@
+Current configuration : 1740 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R2
+!
+!
+!
+!
+ip dhcp excluded-address 192.168.10.128 192.168.10.133
+!
+ip dhcp pool LAN2
+ network 192.168.10.128 255.255.255.192
+ default-router 192.168.10.129
+ dns-server 8.8.8.8
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ ip address 192.168.10.129 255.255.255.192
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/1/0
+ ip address 192.168.10.226 255.255.255.252
+!
+interface Serial0/1/1
+ ip address 192.168.10.233 255.255.255.252
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+router ospf 10
+ router-id 2.2.2.2
+ log-adjacency-changes
+ passive-interface GigabitEthernet0/0/0
+ network 192.168.10.128 0.0.0.63 area 0
+ network 192.168.10.224 0.0.0.3 area 0
+ network 192.168.10.232 0.0.0.3 area 0
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner login ^C
+----------------------------------------------------------
+Corporate Network - Central Office R2
+Secure Access System - Login Required
+----------------------------------------------------------
+^C
+banner motd ^C
+**********************************************************
+WARNING: Unauthorized access to this device is prohibited!
+All connections are being monitored and logged.
+If you are not an authorized admin, disconnect now.
+**********************************************************
+^C
+!
+!
+!
+!
+line con 0
+ password 7 0822455D0A16544541
+ logging synchronous
+ login
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
